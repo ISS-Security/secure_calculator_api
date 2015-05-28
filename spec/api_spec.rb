@@ -4,37 +4,21 @@ describe 'Secure Calculator API Stories' do
   describe 'Getting the root of the service' do
     it 'should return ok' do
       get '/'
-      last_response.body.must_include 'up and running'
+      last_response.body.must_include 'Secure Calculator Web API'
       last_response.status.must_equal 200
     end
   end
 
   describe 'Getting hash_murmur hash' do
-    before do
-      Operation.delete_all
-    end
-
     it 'should return a valid hash as Fixnum' do
       get '/api/v1/hash_murmur?text=hashthistext'
       last_response.status.must_equal 200
       results = JSON.parse(last_response.body)
       results['hash'].must_be_kind_of Fixnum
     end
-
-    it 'should save an encrypted result' do
-      get "/api/v1/hash_murmur?text=hashthistext"
-      saved_op = Operation.first
-      saved_parameters = JSON.parse(saved_op.parameters)
-      saved_parameters.must_equal( { "text"=>"hashthistext" } )
-      saved_op.encrypted_parameters.wont_equal saved_op.parameters
-    end
   end
 
   describe 'Getting random_simple number' do
-    before do
-      Operation.delete_all
-    end
-
     it 'should return a valid number as Fixnum' do
       post '/api/v1/random_simple'
       last_response.status.must_equal 200

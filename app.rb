@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'rdiscount'
+require 'tilt/rdiscount'
 
 configure :development, :test do
   require 'config_env'
@@ -24,10 +25,6 @@ class SecurityCalculatorAPI < Sinatra::Base
     content_type :json
     plaintext = params[:text]
     halt 400 unless plaintext
-
-    op = Operation.new(operation: 'hash_murmur',
-                       parameters: { text: plaintext }.to_json)
-    op.save
 
     { hash: plaintext.hash,
       notes: 'Non-cryptographic hash not for secure use'
