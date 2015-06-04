@@ -11,7 +11,7 @@ gem 'rake'
 
 gem 'activerecord'
 gem 'sinatra-activerecord'
-gem 'protected_attributes'
+gem 'tux'
 
 gem 'rbnacl-libsodium'
 gem 'jwt'

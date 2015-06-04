@@ -15,6 +15,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    bond (0.5.1)
     builder (3.2.2)
     config_env (0.1.0)
     daemons (1.2.2)
@@ -25,8 +26,6 @@ GEM
     jwt (1.5.0)
     minitest (5.7.0)
     pg (0.18.2)
-    protected_attributes (1.0.9)
-      activemodel (>= 4.0.1, < 5.0)
     rack (1.6.1)
     rack-protection (1.5.3)
       rack
@@ -38,6 +37,14 @@ GEM
     rbnacl-libsodium (1.0.3)
       rbnacl (~> 3.0, >= 3.0.1)
     rdiscount (2.1.8)
+    ripl (0.7.1)
+      bond (~> 0.5.1)
+    ripl-multi_line (0.3.1)
+      ripl (>= 0.3.6)
+    ripl-rack (0.2.1)
+      rack (>= 1.0)
+      rack-test (~> 0.6.2)
+      ripl (>= 0.7.0)
     shotgun (0.9.1)
       rack (>= 1.0)
     sinatra (1.4.6)
@@ -54,6 +61,11 @@ GEM
       rack (~> 1.0)
     thread_safe (0.3.5)
     tilt (2.0.1)
+    tux (0.3.0)
+      ripl (>= 0.3.5)
+      ripl-multi_line (>= 0.2.4)
+      ripl-rack (>= 0.2.0)
+      sinatra (>= 1.2.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
@@ -67,7 +79,6 @@ DEPENDENCIES
   jwt
   minitest
   pg
-  protected_attributes
   rack
   rack-test
   rake
@@ -78,3 +89,4 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   thin
+  tux
