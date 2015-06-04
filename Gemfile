@@ -6,7 +6,6 @@ gem 'thin'
 gem 'json'
 gem 'rdiscount'
 
-gem 'config_env'
 gem 'rake'
 
 gem 'activerecord'
