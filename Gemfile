@@ -6,6 +6,7 @@ gem 'thin'
 gem 'json'
 gem 'rdiscount'
 
+gem 'config_env'
 gem 'rake'
 
 gem 'activerecord'
@@ -26,7 +27,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'config_env'
   gem 'sqlite3'
 end
 
