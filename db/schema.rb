@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20150416145806) do
 
   create_table "operations", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "operation"
     t.text     "encrypted_parameters"
     t.string   "nonce"
