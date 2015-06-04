@@ -3,8 +3,13 @@ require 'jwt'
 
 module CalcHelper
   def authenticate_client_from_header(authorization)
-    scheme, jwt = authorization.split ' '
-    # (scheme =~ /^Bearer$/i) &&
+    scheme, jwt = authorization.split(' ')
+    ui_key = OpenSSL::PKey::RSA.new(ENV['UI_PUBLIC_KEY'])
+    payload = JWT.decode jwt, ui_key
+    puts "PAYLOAD: #{payload}"
+    (scheme =~ /^Bearer$/i) && (payload['iss'] == 'https://securecalc.herokuapp.com')
+  rescue
+    false
   end
 
   def random_simple(max=nil, seed=nil)

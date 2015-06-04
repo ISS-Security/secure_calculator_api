@@ -34,7 +34,7 @@ class SecurityCalculatorAPI < Sinatra::Base
 
   post '/api/v1/random_simple' do
     content_type :json
-    authenticate_client_from_header(request['AUTHORIZATION'])
+    halt 401 unless authenticate_client_from_header(env['HTTP_AUTHORIZATION'])
 
     max = seed = nil
     request_json = request.body.read
@@ -43,7 +43,6 @@ class SecurityCalculatorAPI < Sinatra::Base
       max = req['max']
       seed = req['seed']
     end
-
     random_simple(max, seed).to_json
   end
 
