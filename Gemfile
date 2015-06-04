@@ -12,6 +12,7 @@ gem 'rake'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'tux'
+gem 'hirb'
 
 gem 'rbnacl-libsodium'
 gem 'jwt'
