@@ -8,6 +8,7 @@ configure :development, :test do
   ConfigEnv.path_to_config("#{__dir__}/config/config_env.rb")
 end
 
+require_relative 'model/operation'
 require_relative 'helpers/calc_helper'
 
 # Security Calculator Web Service
@@ -33,6 +34,8 @@ class SecurityCalculatorAPI < Sinatra::Base
 
   post '/api/v1/random_simple' do
     content_type :json
+    authenticate_client_from_header(request['AUTHORIZATION'])
+
     max = seed = nil
     request_json = request.body.read
     unless request_json.empty?

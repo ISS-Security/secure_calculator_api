@@ -1,6 +1,12 @@
 require 'rbnacl/libsodium'
+require 'jwt'
 
 module CalcHelper
+  def authenticate_client_from_header(authorization)
+    scheme, jwt = authorization.split ' '
+    # (scheme =~ /^Bearer$/i) &&
+  end
+
   def random_simple(max=nil, seed=nil)
     req_params = { max: max, seed: seed }
 
