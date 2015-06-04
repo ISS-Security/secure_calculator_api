@@ -3,11 +3,14 @@ require 'jwt'
 
 module CalcHelper
   def authenticate_client_from_header(authorization)
+    logger.info "AUTHORIZATION: #{authorization}"
     scheme, jwt = authorization.split(' ')
     ui_key = OpenSSL::PKey::RSA.new(ENV['UI_PUBLIC_KEY'])
     payload = JWT.decode jwt, ui_key
-    puts "PAYLOAD: #{payload}"
-    (scheme =~ /^Bearer$/i) && (payload['iss'] == 'https://securecalc.herokuapp.com')
+    logger.info "PAYLOAD: #{payload}"
+    result = (scheme =~ /^Bearer$/i) && (payload['iss'] == 'https://securecalc.herokuapp.com')
+    logger.info "RESULT: #{result}"
+    result
   rescue
     false
   end
