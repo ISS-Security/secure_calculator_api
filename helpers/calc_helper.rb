@@ -10,7 +10,7 @@ module CalcHelper
     logger.info "PAYLOAD: #{payload}"
     result = (scheme =~ /^Bearer$/i) && (payload['iss'] == 'https://securecalc.herokuapp.com')
     logger.info "RESULT: #{result}"
-    result
+    return result
   rescue
     false
   end
