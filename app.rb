@@ -2,6 +2,7 @@ require 'sinatra'
 require 'json'
 require 'rdiscount'
 require 'tilt/rdiscount'
+require 'hirb'
 
 configure :development, :test do
   require 'config_env'
@@ -15,6 +16,10 @@ require_relative 'helpers/calc_helper'
 class SecurityCalculatorAPI < Sinatra::Base
   include CalcHelper
   enable :logging
+
+  configure do
+    Hirb.enable
+  end
 
   get '/api/v1/?' do
     'Services offered include<br>' \
