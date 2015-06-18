@@ -29,4 +29,11 @@ module CalcHelper
     { random: result, seed: seed,
       notes: 'Simple PRNG not for secure use' }
   end
+
+  def operation_index
+    op_list = Operation
+                .where(user_id: @user_id)
+                .map() { |op| {name: op.operation, date: op.created_at} }
+    {user_id: @user_id, operations: op_list}
+  end
 end

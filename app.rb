@@ -51,6 +51,15 @@ class SecurityCalculatorAPI < Sinatra::Base
     random_simple(max, seed).to_json
   end
 
+  get '/api/v1/operation' do
+    content_type :json
+    halt 401 unless authenticate_client_from_header(env['HTTP_AUTHORIZATION'])
+
+    ops = operation_index
+    logger.info "OPS SENT: #{ops}"
+    ops.to_json
+  end
+
   get '/' do
     markdown :README
   end
