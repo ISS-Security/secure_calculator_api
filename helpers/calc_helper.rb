@@ -26,6 +26,8 @@ module CalcHelper
     randomizer = Random.new(seed)
     result = max ? randomizer.rand(max) : randomizer.rand
 
+    operation_index
+
     { random: result, seed: seed,
       notes: 'Simple PRNG not for secure use' }
   end
@@ -34,6 +36,8 @@ module CalcHelper
     op_list = Operation
                 .where(user_id: @user_id)
                 .map() { |op| {name: op.operation, date: op.created_at} }
-    {user_id: @user_id, operations: op_list}
+    op_index = {user_id: @user_id, operations: op_list}
+    settings.ops_cache.set(@user_id, op_index.to_json)
+    op_index
   end
 end
