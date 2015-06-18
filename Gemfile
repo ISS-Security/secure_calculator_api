@@ -17,6 +17,9 @@ gem 'hirb'
 gem 'rbnacl-libsodium'
 gem 'jwt'
 
+gem 'dalli'
+gem 'activesupport'
+
 group :development do
   gem 'shotgun'
 end

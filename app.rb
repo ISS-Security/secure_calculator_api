@@ -3,6 +3,9 @@ require 'json'
 require 'rdiscount'
 require 'tilt/rdiscount'
 require 'hirb'
+require 'dalli'
+require 'active_support'
+require 'active_support/core_ext'
 
 configure :development, :test do
   require 'config_env'
@@ -19,6 +22,13 @@ class SecurityCalculatorAPI < Sinatra::Base
 
   configure do
     Hirb.enable
+
+    set :ops_cache, Dalli::Client.new((ENV["MEMCACHIER_SERVERS"] || "").split(","),
+      {:username => ENV["MEMCACHIER_USERNAME"],
+        :password => ENV["MEMCACHIER_PASSWORD"],
+        :socket_timeout => 1.5,
+        :socket_failure_delay => 0.2
+        })
   end
 
   get '/api/v1/?' do
