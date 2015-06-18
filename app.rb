@@ -66,7 +66,6 @@ class SecurityCalculatorAPI < Sinatra::Base
     halt 401 unless authenticate_client_from_header(env['HTTP_AUTHORIZATION'])
 
     ops = operation_index
-    logger.info "OPS SENT: #{ops}"
     ops.to_json
   end
 
